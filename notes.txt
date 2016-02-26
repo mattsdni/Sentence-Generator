@@ -1,0 +1,43 @@
+the site has been mostly designed in photoshop. i will start coding now. 
+
+ive created a simple way to allow users to upload their own grammar files to the site. instead of having html buttons, a text link can be clicked,
+which triggers a javascript function which silently presses the 'select a file' button. when the file is selected, that value in the form is
+changed, which is noticed by another javascript function, which then silently presses the 'upload' button. this method gives the user a much
+more seamless experience. code based on this example: http://www.w3schools.com/php/php_file_upload.asp
+
+i am using radio buttons to create a grid of selectable tiles, however the code i found at this site: http://jsfiddle.net/davidelrizzo/DYJkG/
+has a bit of a formatting issue. the hack used to make the radio buttons look more like tiles leaves their anchor point far to the top right.
+i expect i can correct this by using margin and padding in css.
+
+i have placed the radio button into a table, which aids in the formatting, however i still cannot center the table at all browser sizes.
+im going to work on the backend of the site for now.
+
+i now have a mysql server running to keep track of the grammar files on the server. i am storing the file name, name (which might be able
+to be changed by the user at some point) and the number of times that grammar has been used (to track popularity).
+
+ive just set up the ajax request for the server to respond with the generated text. generate.php currently just returns the name of the
+file that was loaded. however, it seems that php is messing up the file by removing all the < and >. so i have to figure out what is 
+going on there before i can parse the grammar.
+
+turns out it's just an html issue. printing the file through the htmlspecialchars function correctly displays the < > on the web page,
+although this is not needed since the grammar file never needs to be printed on the page.
+
+i have magically fixed the css to keep the templates centered in the page with the code: margin-left: calc(50% - 41vw - 8px);
+50% seems to put it in the center (left justified), then the 41vw is about 2x the width of each box (not sure why this works)
+and the - 8px is twice the width between the blocks. magic css y u do?
+
+the templates are now generated with php code that reads the available templates from the database and outputs the correct html code
+to generate a table.
+
+the grammar now loads into an associative array in php. i have to 'unset()' the array of productions each time since php has mega global scope.
+
+most of the c++ code has been translated over to php. now i need to address the issue of using the goto statement in c++. i need to factor out 
+the code in the while loop 'while (strlen($def) > 0)' into a funtion and use a return statement in place of the goto. =
+
+ok the generate function works now. theres absolutely no error checking, so if the grammar isnt perfect the output will be broken. it still 
+cant deal with empty strings i think. next up is to make the generate more robust and then expand more features of the site. maybe have a page
+on how to make a grammar, or just create a grammar creation tool or something. real time generation would be cool to have on the creator page.
+also, adding user asccount might make sense it users want to make and keep track of their grammars. also, i need to upadte the database every time
+someone uses a grammar. 
+
+views are now tracked in the sql database.
