@@ -10,15 +10,15 @@
      */
 
     // your database's name
-    define("DATABASE", "generator");
+    define("DATABASE", "dfteitaajtibca");
 
     // your database's password
-    define("PASSWORD", "XhzoK1l45sDy34tr");
+    define("PASSWORD", "0339249e8ae4410a4ad5a525c97ae0eafb203697879199db70c27e89e3c566ec");
 
     // your database's server
-    define("SERVER", "localhost");
+    define("SERVER", "ec2-54-235-81-176.compute-1.amazonaws.com");
 
     // your database's username
-    define("USERNAME", "mattsdni");
+    define("USERNAME", "vgwksicpfqpbbu");
 
 ?>
